@@ -159,3 +159,24 @@ Prompts are stored as distinct versioned template files in `backend/app/ai/promp
 - Few-shot Hinglish examples.
 - Anti-hallucination instruction: "If no purchase requirements are mentioned, return `{\"items\": []}`."
 - Guardrails: "Do NOT output markdown commentary or explanation. Return ONLY raw JSON."
+
+---
+
+## 6. Implementation & Error Handling Status
+
+### 6.1 Provider Implementations (Phase 3 Verified)
+- **`MockAIProvider` (`backend/app/ai/mock_provider.py`)**: Fully implemented with deterministic fixtures for Hinglish, English groceries, greetings, error simulation, and fallback parsing.
+- **`LocalGemmaProvider` (`backend/app/ai/local_gemma_provider.py`)**: Lazy-loaded inference pipeline using HuggingFace Transformers. Catches missing weights or missing dependencies and raises `AIProviderRuntimeError`.
+- **`HostedGemmaProvider` (`backend/app/ai/hosted_gemma_provider.py`)**: Clean stub for remote inference; raises `AIProviderConfigurationError` when unconfigured.
+- **`AI Factory` (`backend/app/ai/factory.py`)**: Central factory `get_ai_provider(...)` resolving provider by `AI_PROVIDER` configuration setting.
+
+### 6.2 Error Handling & Zero Trust
+- **JSON Sanitization**: Strips markdown code fences (```json ... ```) and isolates curly-bracketed JSON.
+- **Pydantic Validation**: All outputs validated into `ExtractedItem` (name required, quantity >= 1, unit canonicalized).
+- **Business Normalization**: Normalizes units (e.g. `pkts` -> `packet`, `pcs` -> `piece`, `kgs` -> `kg`), trims whitespace, converts names to lowercase.
+- **Atomic Rollback**: If provider fails, database transaction is rolled back and returns HTTP 502 Bad Gateway.
+
+### 6.3 Gemma 4 12B Runtime Status
+- **Local Gemma 4 12B Inference**: `NOT VERIFIED — ENVIRONMENT BLOCKED`
+- **Environment Detail**: Host machine is macOS CPU without local model weights or Apple Silicon/CUDA GPU acceleration configured. The provider architecture, lazy-loading, and error-trapping are fully implemented and verified via automated tests.
+

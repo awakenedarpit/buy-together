@@ -30,8 +30,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Configured `@tailwindcss/vite` plugin and `frontend/src/index.css`.
   - Initial `App.jsx` status dashboard connecting to healthcheck API.
   - Verified clean production build (`npm run build`).
+- Database & Authentication (Phase 2):
+  - SQLAlchemy 2.0 ORM models: `User`, `Message`, `RequestItem`.
+  - Alembic migration environment and initial migration `1ea134d4c373`.
+  - Secure bcrypt password hashing via `pwdlib`.
+  - JWT token generation and verification (`create_access_token`, `verify_token`).
+  - Auth endpoints: `/api/v1/auth/register`, `/api/v1/auth/login`, `/api/v1/auth/me`.
+  - Role-based authorization dependency `require_role(role)`.
+  - Isolated test fixtures with in-memory SQLite rollback sessions.
+- AI Provider & Extraction Pipeline (Phase 3):
+  - Provider abstraction interface `BaseAIProvider` decoupling application code from AI runtimes.
+  - Deterministic `MockAIProvider` with Hinglish, English grocery, greeting, and error simulation fixtures.
+  - `LocalGemmaProvider` with lazy loading, precision mapping, and missing-weight safety guards.
+  - `HostedGemmaProvider` stub for remote inference endpoints.
+  - Provider factory `get_ai_provider` resolving provider via `AI_PROVIDER` configuration setting.
+  - Zero-trust `ExtractionService` validating and canonicalizing item names, quantities, and units.
+  - `MessageService` coordinating atomic message and request-item persistence.
+  - Endpoints: `POST /api/v1/messages` and `GET /api/v1/messages` with member ownership isolation.
+  - Comprehensive unit and integration test suite (31 tests passing).
 
 ### Security
 - Mandated zero-trust pipeline for AI model outputs: strict validation through Pydantic before database writes.
 - Established strict Role-Based Access Control (RBAC) separating `MEMBER` and `MANAGER` capabilities.
-- Prohibited committing raw `.env` files or credentials.
+- Prohibited committing raw `.env` files, API tokens, or model weights.
+- Enforced strict member ownership verification on message history endpoints.

@@ -62,64 +62,49 @@
 
 ## Phase 2: Database, Models & Migrations
 
-- [ ] Setup SQLAlchemy 2.0 database engine & session dependency
-- [ ] Define database models:
-  - [ ] `User` (`id`, `name`, `email`, `password_hash`, `role`, `created_at`, `updated_at`)
-  - [ ] `Message` (`id`, `user_id`, `text`, `created_at`)
-  - [ ] `RequestItem` (`id`, `message_id`, `user_id`, `name`, `variant`, `quantity`, `unit`, `unit_price`, `status`, `created_at`, `updated_at`)
-- [ ] Setup Alembic migration environment
-- [ ] Generate initial database migration script
-- [ ] Verify migration execution and schema validation
+- [x] Setup SQLAlchemy 2.0 database engine & session dependency
+- [x] Define database models:
+  - [x] `User` (`id`, `name`, `email`, `password_hash`, `role`, `created_at`, `updated_at`)
+  - [x] `Message` (`id`, `user_id`, `text`, `created_at`)
+  - [x] `RequestItem` (`id`, `message_id`, `user_id`, `name`, `variant`, `quantity`, `unit`, `unit_price`, `status`, `created_at`, `updated_at`)
+- [x] Setup Alembic migration environment
+- [x] Generate initial database migration script
+- [x] Verify migration execution and schema validation
 
 ---
 
 ## Phase 3: Authentication, JWT & Role Authorization
 
-- [ ] Implement secure password hashing with `bcrypt` / `pwdlib`
-- [ ] Implement JWT token generation and validation utilities
-- [ ] Create Pydantic auth schemas (`UserRegister`, `UserLogin`, `TokenResponse`, `UserOut`)
-- [ ] Implement `/api/v1/auth/register` endpoint
-- [ ] Implement `/api/v1/auth/login` endpoint
-- [ ] Implement `/api/v1/auth/me` endpoint
-- [ ] Create FastAPI authentication dependencies (`get_current_user`, `require_role(role)`)
-- [ ] Write unit and integration tests for authentication and RBAC
+- [x] Implement secure password hashing with `bcrypt` / `pwdlib`
+- [x] Implement JWT token generation and validation utilities
+- [x] Create Pydantic auth schemas (`UserRegister`, `UserLogin`, `TokenResponse`, `UserOut`)
+- [x] Implement `/api/v1/auth/register` endpoint
+- [x] Implement `/api/v1/auth/login` endpoint
+- [x] Implement `/api/v1/auth/me` endpoint
+- [x] Create FastAPI authentication dependencies (`get_current_user`, `require_role(role)`)
+- [x] Write unit and integration tests for authentication and RBAC
 
 ---
 
-## Phase 4: AI Provider Abstraction
+## Phase 4 (AI Abstraction & Extraction Pipeline)
 
-- [ ] Define `BaseAIProvider` abstract interface class
-- [ ] Define extraction input and output data contracts (`ItemExtraction`, `ExtractionResult`)
-- [ ] Implement `MockAIProvider` with deterministic test fixtures and Hinglish examples
-- [ ] Implement provider factory based on `AI_PROVIDER` configuration setting
-- [ ] Write unit tests verifying provider interchangeability
-
----
-
-## Phase 5: Local & Remote Gemma Integration
-
-- [ ] Create versioned prompt template (`prompts/v1_extract.txt`) with few-shot Hinglish examples
-- [ ] Implement `LocalGemmaProvider` using Transformers / PyTorch pipeline
-- [ ] Implement `HostedInferenceProvider` for HuggingFace / OpenAI-compatible remote endpoints
-- [ ] Add runtime error handling, model loading status, and graceful timeout fallback
-
----
-
-## Phase 6: AI Extraction & Validation Pipeline
-
-- [ ] Implement strict Pydantic validation on model output
-- [ ] Implement normalization logic (trimming, lowercase names, singular units)
-- [ ] Handle malformed AI outputs, missing attributes, and zero/negative quantities
-- [ ] Write comprehensive validation test suite with edge cases
-
----
-
-## Phase 7: Messages & Request Item Creation
-
-- [ ] Create message ingestion service
-- [ ] Connect ingestion pipeline: User Input -> Save Message -> AI Extract -> Validate -> Save Request Items
-- [ ] Implement `POST /api/v1/messages/` endpoint
-- [ ] Verify atomic transaction rollback if database write fails
+- [x] Define `BaseAIProvider` abstract interface class
+- [x] Define extraction input and output data contracts (`ExtractedItem`, `ExtractionResult`)
+- [x] Implement `MockAIProvider` with deterministic test fixtures and Hinglish examples
+- [x] Implement provider factory based on `AI_PROVIDER` configuration setting
+- [x] Write unit tests verifying provider interchangeability
+- [x] Create versioned prompt template (`prompts/v1_extract.txt`) with few-shot Hinglish examples
+- [x] Implement `LocalGemmaProvider` using Transformers / PyTorch pipeline
+- [x] Implement `HostedGemmaProvider` stub for remote inference endpoints
+- [x] Add runtime error handling, model loading status, and graceful fallback
+- [x] Implement strict Pydantic validation on model output (`ExtractedItem`)
+- [x] Implement normalization logic (trimming, lowercase names, singular units)
+- [x] Handle malformed AI outputs, missing attributes, and zero/negative quantities
+- [x] Write comprehensive validation test suite with edge cases
+- [x] Create message ingestion service (`MessageService`)
+- [x] Connect ingestion pipeline: User Input -> Save Message -> AI Extract -> Validate -> Save Request Items
+- [x] Implement `POST /api/v1/messages` and `GET /api/v1/messages` endpoints
+- [x] Verify atomic transaction rollback if database write or AI provider fails
 
 ---
 
