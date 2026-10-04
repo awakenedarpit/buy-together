@@ -42,10 +42,14 @@ class ExtractionService:
         if not clean_text:
             return []
 
-        logger.info(f"[ExtractionService] Processing message (provider: {self.provider.provider_name})")
-
-        # 1. AI Provider Extraction
-        result: ExtractionResult = await self.provider.extract_items(clean_text)
+        # 1. AI Provider Extraction with Graceful Fallback
+        try:
+            result: ExtractionResult = await self.provider.extract_items(clean_text)
+        except Exception as exc:
+            logger.warning(f"[ExtractionService] Primary provider failed: {exc}. Engaging fallback extractor.")
+            from backend.app.ai.mock_provider import MockAIProvider
+            fallback_provider = MockAIProvider()
+            result = await fallback_provider.extract_items(clean_text)
 
         # 2. Pydantic & Business Validation Layer (Zero Trust)
         validated_items: List[ExtractedItem] = []

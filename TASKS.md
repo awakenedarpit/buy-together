@@ -139,10 +139,16 @@
 
 ---
 
-## Phase 11: React Frontend (Member Experience)
+## Phase 11: React Frontend (Member Experience & 1-Click Demo)
 
 - [x] Setup React + Vite frontend with modern dark aesthetic design system
 - [x] Build Authentication views (`/login`, `/register`) with token storage
+- [x] 1-Click Server-Side Demo Authentication (`POST /api/v1/auth/demo-login`):
+  - [x] `🚀 Continue as Demo Member` prominent button
+  - [x] `👑 Continue as Demo Manager` prominent button
+  - [x] Zero client-side credentials (no emails/passwords in JS, localStorage, HTML, or public env)
+  - [x] Idempotent server-side account provisioning & signed JWT issuance
+- [x] Vercel SPA routing rewrites (`frontend/vercel.json`) for `/dashboard` and `/manager`
 - [x] Build Member Dashboard:
   - [x] Natural language chat input bar (with quick sample prompts)
   - [x] Real-time item extraction feedback card

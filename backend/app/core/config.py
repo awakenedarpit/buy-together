@@ -49,6 +49,13 @@ class Settings(BaseSettings):
     HOSTED_INFERENCE_URL: Optional[str] = Field(default=None)
     HF_TOKEN: Optional[str] = Field(default=None)
 
+    # Demo Accounts Configuration (Server-Side Only)
+    DEMO_MEMBER_EMAIL: str = Field(default="demo.member@buytogether.app")
+    DEMO_MEMBER_PASSWORD: str = Field(default="DemoMemberSecurePass2026!")
+    DEMO_MANAGER_EMAIL: str = Field(default="demo.manager@buytogether.app")
+    DEMO_MANAGER_PASSWORD: str = Field(default="DemoManagerSecurePass2026!")
+    SUPABASE_SERVICE_ROLE_KEY: Optional[str] = Field(default=None)
+
     @property
     def cors_origins_list(self) -> List[str]:
         """Convert comma-separated CORS_ORIGINS string to a clean list."""

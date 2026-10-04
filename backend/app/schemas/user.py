@@ -39,3 +39,8 @@ class UserOut(UserBase):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class DemoLoginRequest(BaseModel):
+    role: UserRole = Field(default=UserRole.MEMBER, description="Demo role: MEMBER or MANAGER")
+

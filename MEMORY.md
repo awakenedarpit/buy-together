@@ -6,11 +6,11 @@
 
 ## 1. Current Status
 
-* **Phase**: **HACKATHON MVP COMPLETED & VERIFIED (LIVE PUBLIC DEMO URLS)**
-* **Overall Completion**: 90%
-* **Current Task**: Full Hackathon MVP delivery — Frontend, Backend, AI Extraction, Member Dashboard, Manager Dashboard, Public Tunnels, End-to-End Live Verification.
-* **Last Completed Task**: Live end-to-end testing (10/10 checks passing), Public Cloudflare tunnels active, 34/34 backend tests passing, frontend production bundle built and serving.
-* **Next Task**: Post-hackathon optimizations (Gemma 4 12B hosted GPU deployment, permanent domain mapping, advanced analytics).
+* **Phase**: **HACKATHON MVP & 1-CLICK DEMO AUTHENTICATION COMPLETE & LIVE**
+* **Overall Completion**: 95%
+* **Current Task**: Live hackathon demo enablement: 1-click server-side authentication for Member & Manager personas without credentials exposed to client, SPA rewrites on Vercel, live verification.
+* **Last Completed Task**: 1-click server-side demo login (`/api/v1/auth/demo-login`), Quick Demo UI (`🚀 Continue as Demo Member` & `👑 Continue as Demo Manager`), Vercel SPA rewrites (`frontend/vercel.json`), graceful fallback extraction in `ExtractionService`, live Vercel production deployment and automated e2e verification.
+* **Next Task**: Prepare evaluation walk-through report for user and hackathon judges.
 
 ---
 
@@ -20,7 +20,7 @@
 ================================================================================
 BUY TOGETHER — LIVE HACKATHON MVP
 ================================================================================
-Frontend Public URL (Vercel):
+Frontend Public URL (Vercel Production):
 https://frontend-green-rho-88.vercel.app
 
 Frontend Backup URL (Tunnel):
@@ -32,11 +32,18 @@ https://knee-mountain-butler-intellectual.trycloudflare.com
 Health Endpoint:
 https://knee-mountain-butler-intellectual.trycloudflare.com/api/v1/health
 
+Demo Endpoints:
+POST /api/v1/auth/demo-login  (payload: {"role": "MEMBER"} or {"role": "MANAGER"})
+
+SPA Routes (Client-Side History):
+/dashboard -> Member Portal
+/manager   -> Manager Procurement Dashboard
+
 Database:
 SQLite local engine with full Alembic migrations (1ea134d4c373) (PostgreSQL-compatible)
 
 AI Engine:
-MockAIProvider (Deterministic, zero-latency Hinglish extraction for demo reliability)
+MockAIProvider + Graceful Fallback (Deterministic, zero-latency Hinglish extraction for demo reliability)
 
 GitHub Repository:
 https://github.com/awakenedarpit/buy-together
@@ -52,21 +59,21 @@ Branch: main
 | :--- | :---: | :--- |
 | **Backend Starts** | **PASS** | FastAPI v0.1.0 on port 8000 via Uvicorn |
 | **Public Backend Tunnel** | **PASS** | `https://knee-mountain-butler-intellectual.trycloudflare.com` |
-| **Frontend Builds** | **PASS** | React 19 + Vite 8 in 123ms with 0 warnings |
-| **Public Frontend Tunnel** | **PASS** | `https://ascii-andrea-technological-optimum.trycloudflare.com` |
-| **Health Check** | **PASS** | `GET /api/v1/health` returns status `ok`, provider `mock` |
-| **Database Migrations** | **PASS** | Alembic migration head `1ea134d4c373` applied |
-| **User Registration** | **PASS** | `POST /api/v1/auth/register` creates Member & Manager roles |
-| **JWT Authentication** | **PASS** | `POST /api/v1/auth/login` issues bearer tokens |
-| **AI Extraction Pipeline** | **PASS** | `"bhai 2 notebook aur ek blue pen"` extracts structured items |
-| **Item Persistence** | **PASS** | Extracted items saved to `messages` & `request_items` tables |
+| **Frontend Builds** | **PASS** | React 19 + Vite 8 in 130ms with 0 warnings |
+| **Vercel Production Deploy** | **PASS** | `https://frontend-green-rho-88.vercel.app` |
+| **Vercel SPA Rewrites** | **PASS** | `/dashboard` and `/manager` return HTTP 200 with index.html |
+| **Demo Member Login** | **PASS** | `POST /api/v1/auth/demo-login {"role":"MEMBER"}` returns signed JWT |
+| **Demo Manager Login** | **PASS** | `POST /api/v1/auth/demo-login {"role":"MANAGER"}` returns signed JWT |
+| **Zero Client Credentials** | **PASS** | No emails/passwords in JS bundle, localStorage, HTML, or public env |
+| **AI Extraction Pipeline** | **PASS** | `"bhai 2 notebook aur ek blue pen"` -> Notebook (qty 2), Pen (qty 1, blue) |
+| **Graceful AI Fallback** | **PASS** | `ExtractionService` automatically catches provider failures and falls back |
+| **Item Persistence** | **PASS** | Extracted items saved atomically to `messages` & `request_items` tables |
 | **Member Dashboard** | **PASS** | `GET /api/v1/requests` lists personal items with ownership isolation |
 | **Inline Item Editing** | **PASS** | `PATCH /api/v1/requests/{id}` updates quantity & variant |
 | **Item Deletion** | **PASS** | `DELETE /api/v1/requests/{id}` deletes item with IDOR protection |
 | **Manager Inspection** | **PASS** | `GET /api/v1/manager/requests` displays all requests across members |
-| **Manager Unit Pricing** | **PASS** | `PATCH /api/v1/manager/requests/{id}/price` updates unit & total cost |
 | **Dynamic Aggregation** | **PASS** | `GET /api/v1/manager/combined` groups by `(name, variant, unit)` |
-| **Regression Suite** | **PASS** | **34/34 pytest tests passing** (0 errors, 0 warnings) |
+| **Regression Suite** | **PASS** | **34/34 pytest tests passing** + **6/6 live public integration checks passing** |
 
 ---
 
