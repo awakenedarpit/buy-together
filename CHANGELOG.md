@@ -40,6 +40,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Real-time AI extraction result feedback cards.
   - Member active requests list with inline edit modal and instant deletion.
   - Manager Procurement Dashboard with KPI metrics, dynamic consolidated table, and member breakdown.
+- Live Embarko Production Deployment:
+  - Public Production URL: `https://buy-together.embarko.app`
+  - Permanent app claimed with official company deploy token.
+  - Showcase listing submitted for "Hactoberfest Hack Days Indore" (`https://embarko.ai/showcase/hactoberfest-hack-days-indore`).
 - Live Vercel Production Deployment:
   - Public Frontend URL: `https://frontend-green-rho-88.vercel.app`
   - Public Backend Tunnel: `https://knee-mountain-butler-intellectual.trycloudflare.com`

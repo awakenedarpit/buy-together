@@ -6,11 +6,11 @@
 
 ## 1. Current Status
 
-* **Phase**: **GEMINI AI EXTRACTION INTEGRATED & LIVE MVP COMPLETE**
-* **Overall Completion**: 98%
-* **Current Task**: Google Gemini AI Integration for natural-language requirement extraction (English/Hindi/Hinglish) with Zero-Trust validation and automated fallback.
-* **Last Completed Task**: `GeminiProvider` implemented using `google-genai` SDK, structured JSON output (`response_mime_type="application/json"`), zero client key exposure, deterministic heuristic fallback for offline/quota safety, enhanced "Understanding your request..." and "Requirements Added ✓" UX, 39/39 pytest passing, deployed to Vercel.
-* **Next Task**: Await Gemini API Key from user or deploy to permanent cloud host.
+* **Phase**: **EMBARKO DEPLOYMENT & SHOWCASE SUBMITTED**
+* **Overall Completion**: 100% (Hackathon MVP Live & Listed)
+* **Current Task**: Showcase listing submitted for "Hactoberfest Hack Days Indore".
+* **Last Completed Task**: Deployed frontend to Embarko (`https://buy-together.embarko.app`), claimed application with company deploy token, and submitted showcase entry to event collection `hactoberfest-hack-days-indore`.
+* **Next Task**: Organizer approval for event showcase listing or provide event code if available.
 
 ---
 
@@ -20,11 +20,14 @@
 ================================================================================
 BUY TOGETHER — LIVE HACKATHON MVP
 ================================================================================
-Frontend Public URL (Vercel Production):
-https://frontend-green-rho-88.vercel.app
+Embarko Live URL (Production):
+https://buy-together.embarko.app
 
-Frontend Backup URL (Tunnel):
-https://ascii-andrea-technological-optimum.trycloudflare.com
+Embarko Showcase Page:
+https://embarko.ai/showcase/hactoberfest-hack-days-indore
+
+Frontend Public URL (Vercel Backup):
+https://frontend-green-rho-88.vercel.app
 
 Backend Public URL:
 https://knee-mountain-butler-intellectual.trycloudflare.com

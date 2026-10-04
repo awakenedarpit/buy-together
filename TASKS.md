@@ -202,16 +202,18 @@
 
 ## Phase 16: Deployment & Infrastructure Setup
 
-- [ ] Prepare Dockerfile and docker-compose for multi-container deployment
-- [ ] Prepare Vercel / Netlify configuration for frontend
-- [ ] Prepare Render / Railway deployment manifest for backend
-- [ ] Test production build scripts (`npm run build`, Python production server)
+- [x] Deploy frontend to Embarko (`https://buy-together.embarko.app`)
+- [x] Claim application using official Embarko deploy token (`~/.embarko/credentials`)
+- [x] Submit showcase listing for "Hactoberfest Hack Days Indore" (`embarko.ai/showcase/hactoberfest-hack-days-indore`)
+- [x] Prepare Vercel deployment for frontend as secondary mirror (`https://frontend-green-rho-88.vercel.app`)
+- [x] Establish secure Cloudflare public tunnel for FastAPI backend (`https://knee-mountain-butler-intellectual.trycloudflare.com`)
+- [x] Test production build scripts (`npm run build`, Python production server)
 
 ---
 
 ## Phase 17: Documentation Cleanup & Demo Preparation
 
-- [ ] Update `README.md` with complete architecture diagrams and demo credentials
-- [ ] Update `CHANGELOG.md` with full version release notes
-- [ ] Verify all documentation links and instructions
-- [ ] Prepare end-to-end demo walkthrough video/script
+- [x] Update `README.md` with complete architecture diagrams and demo credentials
+- [x] Update `CHANGELOG.md` with full version release notes
+- [x] Verify all documentation links and instructions
+- [x] Submit showcase entry for Hacktoberfest Hack Days Indore event approval
