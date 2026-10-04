@@ -56,7 +56,7 @@
 - [x] Implement FastAPI main entrypoint with CORS and lifespan handler (`backend/app/main.py`)
 - [x] Verify FastAPI healthcheck endpoint (`/api/v1/health`) with automated tests
 - [x] Verify React + Vite + Tailwind frontend build
-- [/] Initialize GitHub remote repository and push Phase 0 and Phase 1 commits
+- [x] Initialize GitHub remote repository and push Phase 0 and Phase 1 commits (`https://github.com/awakenedarpit/buy-together`)
 
 ---
 
