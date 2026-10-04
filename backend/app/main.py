@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 from backend.app.core.config import settings
 from backend.app.core.logging import logger
 from backend.app.api.v1.health import router as health_router
+from backend.app.api.v1.auth import router as auth_router
 
 
 @asynccontextmanager
@@ -61,3 +62,5 @@ async def global_exception_handler(request: Request, exc: Exception) -> JSONResp
 
 # Mount API v1 Routers
 app.include_router(health_router, prefix="/api/v1")
+app.include_router(auth_router, prefix="/api/v1")
+
