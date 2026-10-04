@@ -6,11 +6,11 @@
 
 ## 1. Current Status
 
-* **Phase**: PHASE 0 Completed -> Ready for PHASE 1 (Repository & Dev Environment)
-* **Overall Completion**: 10%
-* **Current Task**: Completed Phase 0 documentation & architecture review; ready to scaffold backend and frontend
-* **Last Completed Task**: Created full documentation suite (PRD, TRD, ARCHITECTURE, API, DATABASE, AI, SECURITY, TESTING, DEPLOYMENT, DEVELOPMENT, AI_AGENT_HANDOFF, ADR-001 through ADR-004, README, TASKS, CHANGELOG)
-* **Next Task**: PHASE 1 — Scaffold backend directory structure, requirements.txt, environment settings, and basic FastAPI application
+* **Phase**: PHASE 1 Completed -> Ready for PHASE 2 (Database, SQLAlchemy Models & Migrations)
+* **Overall Completion**: 20%
+* **Current Task**: Completed Phase 1 backend & frontend scaffolds, automated healthcheck test, and frontend build; establishing GitHub remote
+* **Last Completed Task**: Created FastAPI backend with Pydantic settings & CORS, React + Vite + Tailwind frontend, Pytest suite
+* **Next Task**: PHASE 2 — Database setup, SQLAlchemy 2.0 models (`User`, `Message`, `RequestItem`), Alembic migrations
 
 ---
 
@@ -25,24 +25,19 @@
 * Created `MEMORY.md` live state ledger.
 * Created `TASKS.md` with granular checklists across all phases.
 * Created `CHANGELOG.md` following Keep a Changelog standards.
-* Authored `docs/PRD.md` with problem statement, personas, stories, requirements, and flows.
-* Authored `docs/TRD.md` detailing technical stack, schemas, and pipeline.
-* Authored `docs/ARCHITECTURE.md` with Mermaid layer diagrams and sequence workflows.
-* Authored `docs/API.md` with exhaustive REST endpoints and JSON contracts.
-* Authored `docs/DATABASE.md` with ERD, indexing, and dynamic aggregation queries.
-* Authored `docs/AI.md` detailing Gemma 4 12B extraction, schema contracts, and provider abstraction.
-* Authored `docs/SECURITY.md` covering threat model, bcrypt hashing, JWT, RBAC, and IDOR prevention.
-* Authored `docs/TESTING.md` defining unit/integration test strategies, fixtures, and execution scripts.
-* Authored `docs/DEPLOYMENT.md` defining cloud topology and low-cost deployment runbooks.
-* Authored `docs/DEVELOPMENT.md` guiding local setup, virtual environments, and dev servers.
-* Authored `docs/AI_AGENT_HANDOFF.md` establishing model-switch continuity protocols.
-* Authored Architecture Decision Records:
-  - `ADR-001-postgresql.md` (PostgreSQL as primary engine)
-  - `ADR-002-ai-provider-abstraction.md` (Decoupled BaseAIProvider interface)
-  - `ADR-003-polling.md` (Client-side HTTP polling for MVP)
-  - `ADR-004-dynamic-aggregation.md` (Dynamic query-time grouping vs persistent table)
-* Authored root `README.md` with project overview, architecture diagram, and quickstart instructions.
-* Audited all documents to ensure complete conceptual consistency and absence of contradictions.
+* Authored complete technical documentation suite in `docs/` (`PRD.md`, `TRD.md`, `ARCHITECTURE.md`, `API.md`, `DATABASE.md`, `AI.md`, `SECURITY.md`, `TESTING.md`, `DEPLOYMENT.md`, `DEVELOPMENT.md`, `AI_AGENT_HANDOFF.md`, `ADR-001` through `ADR-004`).
+* Authored root `README.md`.
+* Installed GitHub CLI (`gh 2.102.0`) via Homebrew and verified active authentication (`awakenedarpit`).
+* Established Python virtual environment `.venv` and installed all backend production & test dependencies.
+* Implemented modular backend scaffold:
+  - `backend/app/core/config.py` with typed Pydantic `BaseSettings`.
+  - `backend/app/core/logging.py` with formatted application logging.
+  - `backend/app/api/v1/health.py` healthcheck route.
+  - `backend/app/main.py` FastAPI app with lifespan handler and CORS middleware.
+  - `pytest.ini` and `backend/tests/test_health.py`.
+* Verified backend test suite with Pytest (1 passed in 0.01s).
+* Established React + Vite + Tailwind CSS frontend scaffold in `frontend/`.
+* Verified frontend build via `npm run build` (built cleanly in 439ms).
 
 ---
 

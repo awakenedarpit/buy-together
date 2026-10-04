@@ -48,12 +48,15 @@
 
 ## Phase 1: Repository & Development Environment
 
-- [ ] Create modular directory structure (`backend/app`, `backend/tests`, `frontend/src`)
-- [ ] Setup Python environment and dependencies (`requirements.txt`, `pyproject.toml`)
-- [ ] Setup Node/Vite/React frontend scaffold
-- [ ] Configure environment variable loading with `pydantic-settings`
-- [ ] Setup structured logging module with JSON/standard formatter
-- [ ] Verify FastAPI healthcheck endpoint (`/api/v1/health`)
+- [x] Create modular directory structure (`backend/app`, `backend/tests`, `frontend/src`)
+- [x] Setup Python environment and dependencies (`requirements.txt`, `pytest.ini`)
+- [x] Setup Node/Vite/React frontend scaffold with Tailwind CSS
+- [x] Configure environment variable loading with `pydantic-settings` (`backend/app/core/config.py`)
+- [x] Setup structured logging module with standard formatter (`backend/app/core/logging.py`)
+- [x] Implement FastAPI main entrypoint with CORS and lifespan handler (`backend/app/main.py`)
+- [x] Verify FastAPI healthcheck endpoint (`/api/v1/health`) with automated tests
+- [x] Verify React + Vite + Tailwind frontend build
+- [/] Initialize GitHub remote repository and push Phase 0 and Phase 1 commits
 
 ---
 

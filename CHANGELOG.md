@@ -15,20 +15,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `AGENTS.md` operating manual for AI coding agents with zero-trust AI rules and memory handoff protocols.
 - `MEMORY.md` dynamic state ledger for continuity between model switches and sessions.
 - `TASKS.md` 18-phase implementation roadmap.
-- Complete documentation suite under `docs/`:
-  - `docs/PRD.md` (Product Requirements Document)
-  - `docs/TRD.md` (Technical Requirements Document)
-  - `docs/ARCHITECTURE.md` (System Architecture)
-  - `docs/API.md` (REST API Specification)
-  - `docs/DATABASE.md` (Relational Schema & Dynamic Aggregation)
-  - `docs/AI.md` (AI Extraction & Gemma Integration)
-  - `docs/SECURITY.md` (Security Policy & RBAC)
-  - `docs/TESTING.md` (Testing Strategy)
-  - `docs/DEPLOYMENT.md` (Deployment Runbook)
-  - `docs/DEVELOPMENT.md` (Developer Setup Guide)
-  - `docs/AI_AGENT_HANDOFF.md` (Model Switch Protocol)
-  - Architecture Decision Records (`ADR-001` through `ADR-004`).
+- Complete documentation suite under `docs/`: PRD, TRD, ARCHITECTURE, API, DATABASE, AI, SECURITY, TESTING, DEPLOYMENT, DEVELOPMENT, AI_AGENT_HANDOFF, and ADR-001 through ADR-004.
 - Foundational `README.md`.
+- Backend modular architecture scaffold:
+  - `backend/app/core/config.py` using `pydantic-settings` BaseSettings.
+  - `backend/app/core/logging.py` structured application logging.
+  - `backend/app/api/v1/health.py` health check endpoint.
+  - `backend/app/main.py` FastAPI app with lifespan handler and CORS middleware.
+  - `backend/requirements.txt` with FastAPI, Uvicorn, SQLAlchemy, Pydantic, Alembic, psycopg, PyJWT, bcrypt, pytest.
+  - `pytest.ini` with test runner options.
+  - `backend/tests/test_health.py` verifying `/api/v1/health` (100% passing).
+- Frontend application scaffold:
+  - React 18 + Vite 6 + Tailwind CSS v4 in `frontend/`.
+  - Configured `@tailwindcss/vite` plugin and `frontend/src/index.css`.
+  - Initial `App.jsx` status dashboard connecting to healthcheck API.
+  - Verified clean production build (`npm run build`).
 
 ### Security
 - Mandated zero-trust pipeline for AI model outputs: strict validation through Pydantic before database writes.
