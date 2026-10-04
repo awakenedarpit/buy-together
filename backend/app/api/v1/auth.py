@@ -38,7 +38,8 @@ def register_user(
     db.add(user)
     db.commit()
     db.refresh(user)
-    return user
+    return UserOut.model_validate(user)
+
 
 
 @router.post("/login", response_model=TokenResponse)
@@ -73,4 +74,5 @@ def read_current_user(
     current_user: User = Depends(get_current_user),
 ) -> UserOut:
     """Retrieve the profile of the currently authenticated user."""
-    return current_user
+    return UserOut.model_validate(current_user)
+

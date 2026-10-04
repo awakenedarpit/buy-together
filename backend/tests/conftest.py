@@ -34,16 +34,14 @@ def setup_test_db():
 
 @pytest.fixture
 def db_session() -> Generator[Session, None, None]:
-    """Yield a transactional database session rolled back after each test."""
-    connection = test_engine.connect()
-    transaction = connection.begin()
-    session = TestingSessionLocal(bind=connection)
-
+    """Yield a transactional database session with complete table cleanup after each test."""
+    session = TestingSessionLocal()
     yield session
-
+    session.rollback()
+    for table in reversed(Base.metadata.sorted_tables):
+        session.execute(table.delete())
+    session.commit()
     session.close()
-    transaction.rollback()
-    connection.close()
 
 
 @pytest.fixture
@@ -65,15 +63,17 @@ def client(db_session: Session) -> Generator[TestClient, None, None]:
 def member_token(db_session: Session) -> str:
     """Generate a valid JWT bearer token for a standard member user."""
     from backend.app.core.security import hash_password
-    user = User(
-        name="Test Member",
-        email="testmember@example.com",
-        password_hash=hash_password("Password123!"),
-        role=UserRole.MEMBER,
-    )
-    db_session.add(user)
-    db_session.commit()
-    db_session.refresh(user)
+    user = db_session.query(User).filter(User.email == "testmember@example.com").first()
+    if not user:
+        user = User(
+            name="Test Member",
+            email="testmember@example.com",
+            password_hash=hash_password("Password123!"),
+            role=UserRole.MEMBER,
+        )
+        db_session.add(user)
+        db_session.commit()
+        db_session.refresh(user)
     return create_access_token(subject=user.id, email=user.email, role=user.role.value)
 
 
@@ -81,13 +81,16 @@ def member_token(db_session: Session) -> str:
 def manager_token(db_session: Session) -> str:
     """Generate a valid JWT bearer token for a manager user."""
     from backend.app.core.security import hash_password
-    user = User(
-        name="Test Manager",
-        email="testmanager@example.com",
-        password_hash=hash_password("ManagerPass123!"),
-        role=UserRole.MANAGER,
-    )
-    db_session.add(user)
-    db_session.commit()
-    db_session.refresh(user)
+    user = db_session.query(User).filter(User.email == "testmanager@example.com").first()
+    if not user:
+        user = User(
+            name="Test Manager",
+            email="testmanager@example.com",
+            password_hash=hash_password("ManagerPass123!"),
+            role=UserRole.MANAGER,
+        )
+        db_session.add(user)
+        db_session.commit()
+        db_session.refresh(user)
     return create_access_token(subject=user.id, email=user.email, role=user.role.value)
+

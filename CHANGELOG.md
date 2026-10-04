@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.0] - Hackathon MVP Release (Live Demo)
+
+### Added
+- Member Request Items CRUD API (`/api/v1/requests`, `/api/v1/requests/my`, `PATCH /api/v1/requests/{id}`, `DELETE /api/v1/requests/{id}`) with strict ownership enforcement (IDOR protection).
+- Manager Procurement & Dynamic Aggregation API:
+  - `GET /api/v1/manager/requests`: Complete member breakdown view with user profile information.
+  - `GET /api/v1/manager/combined`: Dynamic SQL aggregation grouped by `(name, variant, unit)` with financial summaries.
+  - `PATCH /api/v1/manager/requests/{id}/price`: Wholesale/retail unit pricing.
+  - `PATCH /api/v1/manager/requests/{id}/status`: Procurement lifecycle state updates.
+- Full React 19 + Vite 8 Single Page Application (`frontend/src/App.jsx`):
+  - 1-click Quick Demo account fill for Member and Manager personas.
+  - Natural-language request input box supporting Hinglish (*"bhai 2 notebook aur ek blue pen"*).
+  - Real-time AI extraction result feedback cards.
+  - Member active requests list with inline edit modal and instant deletion.
+  - Manager Procurement Dashboard with KPI metrics, dynamic consolidated table, and member breakdown.
+- Cloudflare Tunnel integration for zero-friction public HTTPS endpoints for frontend and backend.
+- Automated end-to-end verification script testing all 10 user flow steps against live servers.
+
+---
+
 ## [Unreleased]
 
 ### Added

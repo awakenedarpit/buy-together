@@ -17,13 +17,14 @@ class ExtractionService:
     """Zero-Trust AI extraction and normalization pipeline."""
 
     def __init__(self, provider: Optional[BaseAIProvider] = None):
-        self._provider = provider
+        self._explicit_provider = provider
 
     @property
     def provider(self) -> BaseAIProvider:
-        if self._provider is None:
-            self._provider = get_ai_provider()
-        return self._provider
+        if self._explicit_provider is not None:
+            return self._explicit_provider
+        return get_ai_provider()
+
 
     async def extract_and_validate(self, text: str) -> List[ExtractedItem]:
         """Extract structured items from natural language text and enforce strict business validation.

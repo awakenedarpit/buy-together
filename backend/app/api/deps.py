@@ -52,10 +52,12 @@ def get_current_user(
 def require_role(required_role: UserRole) -> Callable[[User], User]:
     """Dependency factory enforcing strict role-based access control."""
     def role_checker(current_user: User = Depends(get_current_user)) -> User:
-        if current_user.role != required_role:
+        user_role_val = current_user.role.value if hasattr(current_user.role, "value") else str(current_user.role)
+        req_role_val = required_role.value if hasattr(required_role, "value") else str(required_role)
+        if user_role_val != req_role_val:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
-                detail=f"Operation not permitted. Required role: {required_role.value}",
+                detail=f"Operation not permitted. Required role: {req_role_val}",
             )
         return current_user
 

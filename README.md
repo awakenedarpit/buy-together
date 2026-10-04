@@ -5,15 +5,27 @@
 
 ---
 
-## 📌 Project Status
+## 🌐 Live Hackathon Demo
 
-- **Current State**: Phase 0 Complete — System Architecture, Continuity Framework & Documentation Established.
-- **Backend Status**: PLANNED (FastAPI + SQLAlchemy + Pydantic)
-- **Frontend Status**: PLANNED (React + Vite + Modular CSS)
-- **AI Engine Status**: PLANNED (`MockAIProvider`, `LocalGemmaProvider`, `HostedInferenceProvider`)
-- **Database Status**: PLANNED (PostgreSQL + Alembic migrations, SQLite test fallback)
+| Component | Public HTTPS URL | Status |
+| :--- | :--- | :---: |
+| **Frontend Web App** | [`https://ascii-andrea-technological-optimum.trycloudflare.com`](https://ascii-andrea-technological-optimum.trycloudflare.com) | **LIVE** |
+| **Backend API** | [`https://knee-mountain-butler-intellectual.trycloudflare.com`](https://knee-mountain-butler-intellectual.trycloudflare.com) | **LIVE** |
+| **Healthcheck** | [`https://knee-mountain-butler-intellectual.trycloudflare.com/api/v1/health`](https://knee-mountain-butler-intellectual.trycloudflare.com/api/v1/health) | **PASS** |
+| **Interactive API Docs**| [`https://knee-mountain-butler-intellectual.trycloudflare.com/docs`](https://knee-mountain-butler-intellectual.trycloudflare.com/docs) | **LIVE** |
+
+> **Quick Demo**: On the live frontend, use the **1-Click Quick Demo Setup** buttons to immediately test as a **Member** or **Manager**.
 
 ---
+
+## 📌 Project Status
+
+- **Current State**: **Hackathon MVP Live & Verified** (Frontend, Backend, Database, AI Extraction, Member Dashboard, Manager Dashboard).
+- **Backend Status**: VERIFIED (FastAPI + SQLAlchemy 2.0 + Pydantic V2 + PyJWT + bcrypt — 34/34 tests passing)
+- **Frontend Status**: VERIFIED (React 19 + Vite 8 + Tailwind CSS v4)
+- **AI Engine Status**: VERIFIED (`MockAIProvider` for instant demo reliability + `LocalGemmaProvider` & `HostedGemmaProvider` abstraction)
+- **Database Status**: VERIFIED (SQLAlchemy 2.0 ORM models, Alembic migrations `1ea134d4c373`)
+
 
 ## 🎯 The Problem
 

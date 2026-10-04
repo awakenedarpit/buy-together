@@ -14,6 +14,8 @@ from backend.app.core.logging import logger
 from backend.app.api.v1.health import router as health_router
 from backend.app.api.v1.auth import router as auth_router
 from backend.app.api.v1.messages import router as messages_router
+from backend.app.api.v1.requests import router as requests_router
+from backend.app.api.v1.manager import router as manager_router
 
 
 @asynccontextmanager
@@ -40,6 +42,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins_list,
+    allow_origin_regex=r"^https?:\/\/.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -65,4 +68,7 @@ async def global_exception_handler(request: Request, exc: Exception) -> JSONResp
 app.include_router(health_router, prefix="/api/v1")
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(messages_router, prefix="/api/v1")
+app.include_router(requests_router, prefix="/api/v1")
+app.include_router(manager_router, prefix="/api/v1")
+
 

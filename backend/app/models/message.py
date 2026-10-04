@@ -23,4 +23,4 @@ class Message(Base):
 
     # Relationships
     user = relationship("User", back_populates="messages")
-    request_items = relationship("RequestItem", back_populates="message", cascade="all, delete-orphan")
+    request_items = relationship("RequestItem", back_populates="message")

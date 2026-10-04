@@ -118,7 +118,7 @@ The **Buy Together** application is architected as a modular monolith with clear
                        │
                        ▼
        [Step 3: Pydantic Schema Validation]
-       (Validate ItemExtraction schema, types, >0 quantities)
+       (Validate ExtractedItem (ItemExtraction) schema, types, >0 quantities)
                        │
                        ▼
        [Step 4: Business Rules Validation]

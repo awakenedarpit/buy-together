@@ -43,7 +43,7 @@ For initial local development, you can leave `AI_PROVIDER=mock` to test the full
    ```
 3. Run database migrations:
    ```bash
-   alembic -c backend/alembic.ini upgrade head
+   alembic upgrade head
    ```
 4. Start the FastAPI development server:
    ```bash

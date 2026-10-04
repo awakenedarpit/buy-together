@@ -5,6 +5,18 @@
 
 ---
 
+## Live Hackathon MVP Deployment (Verified)
+
+| Component | Status | Live Public URL |
+| :--- | :--- | :--- |
+| **Frontend SPA** | **LIVE** | `https://ascii-andrea-technological-optimum.trycloudflare.com` |
+| **FastAPI Backend** | **LIVE** | `https://knee-mountain-butler-intellectual.trycloudflare.com` |
+| **Health Check** | **PASS** | `https://knee-mountain-butler-intellectual.trycloudflare.com/api/v1/health` |
+| **Database** | **PASS** | SQLite local engine with full Alembic migrations (`1ea134d4c373`) |
+| **AI Provider** | **MOCK** | Deterministic MockAIProvider with Hinglish extraction support |
+
+---
+
 ## 1. Production Topology Overview
 
 ```

@@ -69,3 +69,45 @@ def test_cascade_delete_integrity(db_session: Session) -> None:
     # Verify cascade deletion
     assert db_session.query(Message).filter_by(user_id=user.id).count() == 0
     assert db_session.query(RequestItem).filter_by(user_id=user.id).count() == 0
+
+
+def test_message_deletion_preserves_request_items(db_session: Session) -> None:
+    """Verify that deleting a message does NOT delete associated request items (SET NULL)."""
+    user = User(
+        name="Alex Smith",
+        email="alex@example.com",
+        password_hash=hash_password("Secret123!"),
+        role=UserRole.MEMBER,
+    )
+    db_session.add(user)
+    db_session.commit()
+
+    message = Message(
+        user_id=user.id,
+        text="3 pens",
+    )
+    db_session.add(message)
+    db_session.commit()
+
+    item = RequestItem(
+        user_id=user.id,
+        message_id=message.id,
+        name="pen",
+        variant=None,
+        quantity=3,
+        unit="piece",
+        status=ItemStatus.PENDING,
+    )
+    db_session.add(item)
+    db_session.commit()
+
+    # Delete message
+    db_session.delete(message)
+    db_session.commit()
+
+    # Item must still exist for the user
+    surviving_item = db_session.query(RequestItem).filter_by(id=item.id).first()
+    assert surviving_item is not None
+    assert surviving_item.user_id == user.id
+    assert surviving_item.name == "pen"
+

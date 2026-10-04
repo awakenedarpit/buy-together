@@ -1,0 +1,9 @@
+{
+  "venvPath": "/Users/user/PYDATA",
+  "venv": ".venv",
+  "pythonPath": "/Users/user/PYDATA/.venv/bin/python",
+  "extraPaths": [
+    "/Users/user/PYDATA",
+    "/Users/user/PYDATA/.venv/lib/python3.14/site-packages"
+  ]
+}

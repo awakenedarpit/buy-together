@@ -64,3 +64,8 @@ class ExtractionResult(BaseModel):
         default=None,
         description="Raw output string from the model/provider before parsing",
     )
+
+
+# Backward-compatible and architecture-document-aligned alias
+ItemExtraction = ExtractedItem
+

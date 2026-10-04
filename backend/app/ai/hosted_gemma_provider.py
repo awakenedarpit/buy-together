@@ -29,3 +29,8 @@ class HostedGemmaProvider(BaseAIProvider):
             "Hosted Gemma inference endpoint is not configured in this environment. "
             "Set AI_PROVIDER=mock for local deterministic testing or configure remote API credentials."
         )
+
+
+# Backward-compatible and architecture-document-aligned alias
+HostedInferenceProvider = HostedGemmaProvider
+

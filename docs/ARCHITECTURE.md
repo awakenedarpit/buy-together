@@ -96,7 +96,7 @@ graph TD
 
 ### 2.4 Domain & Validation Layer
 - **Role**: Enforce data integrity invariants using Pydantic V2 schemas.
-  - `ItemExtraction`: Ensures item names are non-empty, quantities are positive integers (`>= 1`), and units are standard strings.
+  - `ExtractedItem` (aliased as `ItemExtraction`): Ensures item names are non-empty, quantities are positive integers (`>= 1`), and units are standard strings.
   - `UserRole`: Restricts role assignment.
 - **Boundaries**: Pure Python objects; zero external network dependencies.
 

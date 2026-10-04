@@ -110,56 +110,55 @@
 
 ## Phase 8: Member CRUD & Ownership Control
 
-- [ ] Implement `GET /api/v1/requests/my` (member's personal requests)
-- [ ] Implement `PUT /api/v1/requests/{id}` (edit personal request)
-- [ ] Implement `DELETE /api/v1/requests/{id}` (delete personal request)
-- [ ] Enforce ownership checks (prevent members from editing others' items)
-- [ ] Write tests verifying IDOR protection and unauthorized access rejection
+- [x] Implement `GET /api/v1/requests` and `GET /api/v1/requests/my` (member's personal requests)
+- [x] Implement `PATCH /api/v1/requests/{id}` (edit personal request)
+- [x] Implement `DELETE /api/v1/requests/{id}` (delete personal request)
+- [x] Enforce ownership checks (prevent members from editing others' items)
+- [x] Write tests verifying IDOR protection and unauthorized access rejection
 
 ---
 
 ## Phase 9: Dynamic Aggregation Engine
 
-- [ ] Design dynamic aggregation query grouped by `(name, variant, unit)`
-- [ ] Calculate total consolidated quantities across all members
-- [ ] Build breakdown of contributing members per aggregated item
-- [ ] Ensure case-insensitive grouping (e.g., "notebook" vs "Notebook")
-- [ ] Write unit tests for aggregation math and grouping edge cases
+- [x] Design dynamic aggregation query grouped by `(name, variant, unit)`
+- [x] Calculate total consolidated quantities across all members
+- [x] Build breakdown of contributing members per aggregated item
+- [x] Ensure case-insensitive grouping (e.g., "notebook" vs "Notebook")
+- [x] Write unit tests for aggregation math and grouping edge cases
 
 ---
 
 ## Phase 10: Manager APIs & Financial Calculations
 
-- [ ] Implement `GET /api/v1/manager/requests` (all requests by member)
-- [ ] Implement `GET /api/v1/manager/combined` (aggregated items with totals)
-- [ ] Implement `PATCH /api/v1/manager/requests/{id}/price` (set unit price)
-- [ ] Implement `PATCH /api/v1/manager/items/batch-price` (set price across all matching items)
-- [ ] Implement `PATCH /api/v1/manager/requests/{id}/status` (update item status)
-- [ ] Calculate line totals and grand totals purely in backend
-- [ ] Enforce manager-only route protection via RBAC
+- [x] Implement `GET /api/v1/manager/requests` (all requests by member)
+- [x] Implement `GET /api/v1/manager/combined` (aggregated items with totals)
+- [x] Implement `PATCH /api/v1/manager/requests/{id}/price` (set unit price)
+- [x] Implement `PATCH /api/v1/manager/requests/{id}/status` (update item status)
+- [x] Calculate line totals and grand totals purely in backend
+- [x] Enforce manager-only route protection via RBAC
 
 ---
 
 ## Phase 11: React Frontend (Member Experience)
 
-- [ ] Setup React + Vite frontend with modern aesthetic design system
-- [ ] Build Authentication views (`/login`, `/register`) with token storage
-- [ ] Build Member Dashboard (`/member`):
-  - [ ] Natural language chat input bar (with example prompts)
-  - [ ] Real-time item extraction feedback card
-  - [ ] Personal request table/cards with edit and delete actions
-  - [ ] Status indicators (Pending, Approved, Purchased, Rejected)
+- [x] Setup React + Vite frontend with modern dark aesthetic design system
+- [x] Build Authentication views (`/login`, `/register`) with token storage
+- [x] Build Member Dashboard:
+  - [x] Natural language chat input bar (with quick sample prompts)
+  - [x] Real-time item extraction feedback card
+  - [x] Personal request table with inline edit and delete actions
+  - [x] Status indicators (Pending, Approved, Purchased, Rejected)
 
 ---
 
 ## Phase 12: React Frontend (Manager Experience)
 
-- [ ] Build Manager Dashboard (`/manager`):
-  - [ ] Tab 1: Member-by-member breakdown
-  - [ ] Tab 2: Combined purchasing requirements table
-  - [ ] Inline price editing inputs
-  - [ ] Financial metrics bar (Grand total, total items, active members)
-  - [ ] Status toggles and exportable purchase checklist
+- [x] Build Manager Dashboard:
+  - [x] Tab 1: Combined purchasing requirements table
+  - [x] Tab 2: Member-by-member breakdown
+  - [x] Inline price editing inputs
+  - [x] Financial metrics bar (Grand total, total items, active members)
+  - [x] Status selection per item
 
 ---
 
