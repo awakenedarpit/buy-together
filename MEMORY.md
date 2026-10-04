@@ -20,7 +20,10 @@
 ================================================================================
 BUY TOGETHER — LIVE HACKATHON MVP
 ================================================================================
-Frontend Public URL:
+Frontend Public URL (Vercel):
+https://frontend-green-rho-88.vercel.app
+
+Frontend Backup URL (Tunnel):
 https://ascii-andrea-technological-optimum.trycloudflare.com
 
 Backend Public URL:

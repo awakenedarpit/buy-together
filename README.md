@@ -9,7 +9,8 @@
 
 | Component | Public HTTPS URL | Status |
 | :--- | :--- | :---: |
-| **Frontend Web App** | [`https://ascii-andrea-technological-optimum.trycloudflare.com`](https://ascii-andrea-technological-optimum.trycloudflare.com) | **LIVE** |
+| **Frontend Web App (Vercel)** | [`https://frontend-green-rho-88.vercel.app`](https://frontend-green-rho-88.vercel.app) | **LIVE** |
+| **Frontend (Tunnel Backup)** | [`https://ascii-andrea-technological-optimum.trycloudflare.com`](https://ascii-andrea-technological-optimum.trycloudflare.com) | **LIVE** |
 | **Backend API** | [`https://knee-mountain-butler-intellectual.trycloudflare.com`](https://knee-mountain-butler-intellectual.trycloudflare.com) | **LIVE** |
 | **Healthcheck** | [`https://knee-mountain-butler-intellectual.trycloudflare.com/api/v1/health`](https://knee-mountain-butler-intellectual.trycloudflare.com/api/v1/health) | **PASS** |
 | **Interactive API Docs**| [`https://knee-mountain-butler-intellectual.trycloudflare.com/docs`](https://knee-mountain-butler-intellectual.trycloudflare.com/docs) | **LIVE** |
