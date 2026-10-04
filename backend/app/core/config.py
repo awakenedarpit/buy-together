@@ -49,6 +49,10 @@ class Settings(BaseSettings):
     HOSTED_INFERENCE_URL: Optional[str] = Field(default=None)
     HF_TOKEN: Optional[str] = Field(default=None)
 
+    # Gemini AI Configuration (Server-Side Only)
+    GEMINI_API_KEY: Optional[str] = Field(default=None, description="Google Gemini API Key")
+    GEMINI_MODEL: str = Field(default="gemini-2.5-flash", description="Gemini model name (e.g. gemini-2.5-flash, gemini-1.5-flash)")
+
     # Demo Accounts Configuration (Server-Side Only)
     DEMO_MEMBER_EMAIL: str = Field(default="demo.member@buytogether.app")
     DEMO_MEMBER_PASSWORD: str = Field(default="DemoMemberSecurePass2026!")
@@ -66,7 +70,7 @@ class Settings(BaseSettings):
     @field_validator("AI_PROVIDER")
     @classmethod
     def validate_ai_provider(cls, v: str) -> str:
-        allowed = {"mock", "local_gemma", "hosted", "hosted_gemma"}
+        allowed = {"mock", "local_gemma", "hosted", "hosted_gemma", "gemini"}
         if v.lower() not in allowed:
             raise ValueError(f"AI_PROVIDER must be one of: {allowed}")
         return v.lower()

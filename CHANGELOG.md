@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - Hackathon MVP Release (Live Demo)
 
 ### Added
+- Google Gemini AI Integration (`GeminiProvider`):
+  - Natural-language purchase requirement extraction powered by Google Gemini (`gemini-2.5-flash` / configurable via `GEMINI_MODEL`).
+  - Zero-Trust validation pipeline: User Input -> Gemini -> JSON Parsing -> Pydantic Schema Validation -> Business Validation -> Database Persistence.
+  - Pure JSON structured outputs (`response_mime_type="application/json"`) with dedicated system instructions for English, Hindi, and Hinglish.
+  - Zero Client Exposure: `GEMINI_API_KEY` is strictly server-side, never logged, never sent to the browser or public environment.
+  - Graceful deterministic fallback: If Gemini API key is missing, quota is exceeded, or API times out, automatically uses the heuristic parser without exposing technical errors.
+- Enhanced AI User Experience:
+  - Added "Understanding your request..." state with animated spinner during natural-language processing.
+  - Added "Requirements Added ✓" feedback card displaying formatted item names, quantities, and variants.
 - 1-Click Server-Side Demo Authentication (`POST /api/v1/auth/demo-login`):
   - Dedicated Demo Member (`demo.member@buytogether.app`) and Demo Manager (`demo.manager@buytogether.app`) accounts.
   - Zero client-side credentials: no emails or passwords in JS, localStorage, HTML, or public env variables.

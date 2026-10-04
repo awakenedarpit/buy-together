@@ -164,7 +164,7 @@ def test_provider_failure_returns_502_and_rolls_back(client: TestClient, member_
     # Configure mock provider to fail
     failing_provider = MockAIProvider(simulate_error=True)
     failing_service = MessageService(
-        extraction_service=ExtractionService(provider=failing_provider)
+        extraction_service=ExtractionService(provider=failing_provider, enable_fallback=False)
     )
 
     from backend.app.api.v1 import messages as messages_module

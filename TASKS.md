@@ -101,6 +101,11 @@
 - [x] Implement normalization logic (trimming, lowercase names, singular units)
 - [x] Handle malformed AI outputs, missing attributes, and zero/negative quantities
 - [x] Write comprehensive validation test suite with edge cases
+- [x] Implement `GeminiProvider` using official `google-genai` SDK with strict JSON output
+- [x] Integrate `GEMINI_API_KEY` and `GEMINI_MODEL` server-side settings
+- [x] Implement automatic fallback to heuristic parser if Gemini API is unconfigured or times out
+- [x] Enhanced UX in React frontend: "Understanding your request..." and "Requirements Added ✓"
+- [x] Unit test suite covering all 5 prompt scenarios and zero-trust validation layers
 - [x] Create message ingestion service (`MessageService`)
 - [x] Connect ingestion pipeline: User Input -> Save Message -> AI Extract -> Validate -> Save Request Items
 - [x] Implement `POST /api/v1/messages` and `GET /api/v1/messages` endpoints

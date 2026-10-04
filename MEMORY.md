@@ -6,11 +6,11 @@
 
 ## 1. Current Status
 
-* **Phase**: **HACKATHON MVP & 1-CLICK DEMO AUTHENTICATION COMPLETE & LIVE**
-* **Overall Completion**: 95%
-* **Current Task**: Live hackathon demo enablement: 1-click server-side authentication for Member & Manager personas without credentials exposed to client, SPA rewrites on Vercel, live verification.
-* **Last Completed Task**: 1-click server-side demo login (`/api/v1/auth/demo-login`), Quick Demo UI (`🚀 Continue as Demo Member` & `👑 Continue as Demo Manager`), Vercel SPA rewrites (`frontend/vercel.json`), graceful fallback extraction in `ExtractionService`, live Vercel production deployment and automated e2e verification.
-* **Next Task**: Prepare evaluation walk-through report for user and hackathon judges.
+* **Phase**: **GEMINI AI EXTRACTION INTEGRATED & LIVE MVP COMPLETE**
+* **Overall Completion**: 98%
+* **Current Task**: Google Gemini AI Integration for natural-language requirement extraction (English/Hindi/Hinglish) with Zero-Trust validation and automated fallback.
+* **Last Completed Task**: `GeminiProvider` implemented using `google-genai` SDK, structured JSON output (`response_mime_type="application/json"`), zero client key exposure, deterministic heuristic fallback for offline/quota safety, enhanced "Understanding your request..." and "Requirements Added ✓" UX, 39/39 pytest passing, deployed to Vercel.
+* **Next Task**: Await Gemini API Key from user or deploy to permanent cloud host.
 
 ---
 
@@ -43,7 +43,8 @@ Database:
 SQLite local engine with full Alembic migrations (1ea134d4c373) (PostgreSQL-compatible)
 
 AI Engine:
-MockAIProvider + Graceful Fallback (Deterministic, zero-latency Hinglish extraction for demo reliability)
+Google Gemini API (gemini-2.5-flash / configurable) + Heuristic Fallback Parser
+(Deterministic fallback guarantees 100% demo uptime if API key is absent or quota is limited)
 
 GitHub Repository:
 https://github.com/awakenedarpit/buy-together

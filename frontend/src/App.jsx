@@ -250,16 +250,18 @@ export default function App() {
         body: JSON.stringify({ text: chatInput.trim() }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.detail || 'Failed to process message')
+      if (!res.ok) {
+        throw new Error(data.detail || 'Could not process request')
+      }
 
       const itemsList = data.extracted_items || data.items || []
       setLastExtractedItems(itemsList)
       setChatInput('')
-      showNotify(`AI successfully extracted ${itemsList.length} item(s)!`)
+      showNotify(`Requirements Added ✓ (${itemsList.length} items parsed)`)
       fetchMyRequests()
       if (currentUser?.role === 'MANAGER') fetchManagerData()
     } catch (err) {
-      showNotify(err.message, 'error')
+      showNotify('Could not process request. Please try again.', 'error')
     } finally {
       setAiSubmitting(false)
     }
@@ -645,7 +647,7 @@ export default function App() {
                   </p>
                 </div>
                 <span className="text-[11px] bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2.5 py-1 rounded-full font-mono">
-                  Gemma 4 12B Pipeline
+                  {health ? `${health.ai_provider.toUpperCase()} AI Engine` : 'Gemini AI Pipeline'}
                 </span>
               </div>
 
@@ -654,8 +656,9 @@ export default function App() {
                 <span className="text-slate-500">Try quick sample:</span>
                 {[
                   'bhai 2 notebook aur ek blue pen',
-                  '5 packets of milk and 2 breads',
-                  '3 pack sticky notes and 1 black marker',
+                  '5 A4 notebooks and 3 black pens',
+                  'mujhe 2 red files chahiye',
+                  '10 pencils',
                 ].map((sample, i) => (
                   <button
                     key={i}
@@ -678,38 +681,61 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={aiSubmitting || !chatInput.trim()}
-                  className="bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium px-5 py-3 rounded-xl transition shadow-lg shadow-indigo-600/20 text-sm whitespace-nowrap cursor-pointer"
+                  className="bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium px-5 py-3 rounded-xl transition shadow-lg shadow-indigo-600/20 text-sm whitespace-nowrap cursor-pointer flex items-center gap-2"
                 >
-                  {aiSubmitting ? 'AI Extracting...' : 'Extract & Add Items'}
+                  {aiSubmitting ? (
+                    <>
+                      <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                      <span>Understanding your request...</span>
+                    </>
+                  ) : (
+                    'Extract & Add Items'
+                  )}
                 </button>
               </form>
 
               {/* Extraction Feedback */}
               {lastExtractedItems && (
-                <div className="bg-indigo-950/40 border border-indigo-800/60 rounded-xl p-4 space-y-2">
-                  <div className="text-xs font-semibold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>⚡ AI Extraction Result:</span>
-                    <span className="text-slate-400 font-normal">
-                      ({lastExtractedItems.length} items parsed & saved)
+                <div className="bg-emerald-950/40 border border-emerald-500/40 rounded-xl p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm font-bold text-emerald-400 flex items-center gap-1.5">
+                      <span>Requirements Added ✓</span>
+                    </div>
+                    <span className="text-[11px] text-slate-400 font-mono">
+                      {lastExtractedItems.length} item{lastExtractedItems.length > 1 ? 's' : ''} parsed & saved
                     </span>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                    {lastExtractedItems.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-slate-900 border border-indigo-900/80 rounded-lg p-2.5 flex items-center justify-between text-xs"
-                      >
-                        <div>
-                          <span className="font-semibold text-white capitalize">{item.name}</span>
-                          {item.variant && (
-                            <span className="text-indigo-400 ml-1.5">({item.variant})</span>
-                          )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                    {lastExtractedItems.map((item, idx) => {
+                      const displayName = item.variant
+                        ? `${item.variant.charAt(0).toUpperCase() + item.variant.slice(1)} ${item.name.charAt(0).toUpperCase() + item.name.slice(1)}`
+                        : `${item.name.charAt(0).toUpperCase() + item.name.slice(1)}`;
+                      const unitStr = item.unit === 'piece'
+                        ? (item.quantity > 1 ? 'pieces' : 'piece')
+                        : item.unit;
+                      return (
+                        <div
+                          key={idx}
+                          className="bg-slate-900 border border-emerald-800/60 rounded-xl p-3 flex items-center justify-between text-xs shadow-sm"
+                        >
+                          <div>
+                            <div className="font-semibold text-white text-sm">
+                              {displayName}
+                            </div>
+                            {item.variant && (
+                              <div className="text-[11px] text-slate-400">
+                                Variant: {item.variant}
+                              </div>
+                            )}
+                          </div>
+                          <div className="text-right">
+                            <span className="bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg font-mono font-semibold text-xs">
+                              {item.quantity} {unitStr}
+                            </span>
+                          </div>
                         </div>
-                        <span className="bg-indigo-600/30 text-indigo-200 border border-indigo-500/30 px-2 py-0.5 rounded font-mono font-medium">
-                          {item.quantity} {item.unit}
-                        </span>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}

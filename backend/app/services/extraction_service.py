@@ -16,8 +16,9 @@ from backend.app.core.logging import logger
 class ExtractionService:
     """Zero-Trust AI extraction and normalization pipeline."""
 
-    def __init__(self, provider: Optional[BaseAIProvider] = None):
+    def __init__(self, provider: Optional[BaseAIProvider] = None, enable_fallback: bool = True):
         self._explicit_provider = provider
+        self.enable_fallback = enable_fallback
 
     @property
     def provider(self) -> BaseAIProvider:
@@ -46,6 +47,8 @@ class ExtractionService:
         try:
             result: ExtractionResult = await self.provider.extract_items(clean_text)
         except Exception as exc:
+            if not self.enable_fallback:
+                raise
             logger.warning(f"[ExtractionService] Primary provider failed: {exc}. Engaging fallback extractor.")
             from backend.app.ai.mock_provider import MockAIProvider
             fallback_provider = MockAIProvider()

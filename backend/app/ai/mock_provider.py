@@ -59,8 +59,8 @@ class MockAIProvider(BaseAIProvider):
 
         normalized = text.strip().lower()
 
-        # Fixture 1: Hinglish canonical example
-        if "notebook" in normalized and "pen" in normalized and ("bhai" in normalized or "aur" in normalized or "and" in normalized):
+        # Fixture 1: Hinglish canonical example ("bhai 2 notebook aur ek blue pen")
+        if "bhai" in normalized and "notebook" in normalized and "pen" in normalized:
             items = [
                 ExtractedItem(name="notebook", variant=None, quantity=2, unit="piece"),
                 ExtractedItem(name="pen", variant="blue", quantity=1, unit="piece"),
@@ -115,7 +115,7 @@ class MockAIProvider(BaseAIProvider):
 
         # Pattern: <quantity> [unit] [variant] <name>
         pattern = re.compile(
-            r"(\d+)\s*(packet|packets|pkg|kg|kgs|kilo|piece|pieces|bottle|bottles|box|boxes|can|cans)?\s*(blue|black|red|green|ruled|unruled|white)?\s*([a-zA-Z]+)",
+            r"(\d+)\s*(packet|packets|pkg|kg|kgs|kilo|piece|pieces|bottle|bottles|box|boxes|can|cans)?\s*(a4|a3|a5|blue|black|red|green|ruled|unruled|white|hardcover)?\s*([a-zA-Z]+)",
             re.IGNORECASE,
         )
 

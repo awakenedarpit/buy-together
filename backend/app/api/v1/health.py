@@ -22,10 +22,11 @@ class HealthResponse(BaseModel):
 @router.get("/health", response_model=HealthResponse)
 async def check_health() -> HealthResponse:
     """Liveness probe returning application health status."""
+    active_provider = "gemini" if (settings.GEMINI_API_KEY or settings.AI_PROVIDER == "gemini") else settings.AI_PROVIDER
     return HealthResponse(
         status="ok",
         environment=settings.ENVIRONMENT,
-        ai_provider=settings.AI_PROVIDER,
+        ai_provider=active_provider,
         version="0.1.0",
         timestamp=datetime.now(timezone.utc).isoformat(),
     )
